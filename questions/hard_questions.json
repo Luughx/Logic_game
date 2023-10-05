@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1d",
+        "description": "En cierta isla, hay dos tipos de habitantes, los de tipo uno, que siempre dicen la verdad, y los de tipo dos que siempre mienten. Conoces a cuatro habitantes: Seraphina, Elowen, Islote y Calliope. \nSeraphina dice que Elowen o ella son tipo 1\nElowen dice que Islote o ella son tipo 1\nIslote dice que Calliope o ella son tipo 1\nCalliope dice que Seraphina o ella son tipo 1\nDado que una de ellas es tipo 2, ¿Cuántas del grupo son tipo 2?", 
+        "responses": ["1", "2", "3", "4"], 
+        "correct": ["d"],
+        "points": 300
+    },
+    {
+        "id": "2d",
+        "description": "En cierta isla, hay dos tipos de habitantes, los de tipo uno, que siempre dicen la verdad, y los de tipo dos que siempre mienten. Conoces a dos habitantes: Zephyr y Peregrine.\nZephyr habla, y dice que tanto él como Peregrine son habitantes tipo 2.\n¿Qué tipo de habitantes son Zephyr y Peregrine?", 
+        "responses": ["Zephyr es tipo 1 y Peregrine es tipo 1", "Zephyr es tipo 1 y Peregrine es tipo 2", "Zephyr es tipo 2 y Peregrine es tipo 1", "Zephyr es tipo 2 y Peregrine es tipo 2"], 
+        "correct": ["c"],
+        "points": 100
+    },
+    {
+        "id": "3d",
+        "description": "Hay 5 cajas con dinero, ordénalas según las instrucciones dadas:\nNinguna caja está entre otros dos que tengan más dinero.\nLa caja con $100 no está junto a la que tiene $50.\nLa caja con $50 no está en la primera posición (izquierda)\nHay exactamente dos cajas entre la de $100 y la de $200", 
+        "responses": ["$50", "$100", "$150", "$200", "$250"], 
+        "correct": ["b", "c", "e", "d", "a"],
+        "points": 100
+    },
+    {
+        "id": "4d",
+        "description": "Hay seis objetos con diferente número de identificación. Ordenalos según las instrucciones dadas.\nEl objeto en la posición uno es el #12\nSi dos objetos están uno junto al otro sus números de identificación no pueden tener dígitos en común.", 
+        "responses": ["#12", "#14", "#33", "#234", "#11", "#32"], 
+        "correct": ["a", "c", "b", "f", "e", "d"],
+        "points": 100
+    },
+    {
+        "id": "5d",
+        "description": "En cierta isla, hay dos tipos de habitantes, los de tipo uno, que siempre dicen la verdad, y los de tipo dos que siempre mienten. Conoces a dos habitantes, Roxanna y Celeste.\nRoxanna dice que Celeste es una tipo uno y que ella es una tipo uno.\nCeleste dice que Roxanna es una tipo 2 o que ella es una tipo dos.\n¿Qué tipo de habitante son Celeste y Roxanna?", 
+        "responses": ["Roxanna es tipo 1 y Celeste es tipo 1", "Roxanna es tipo 2 y Celeste es tipo 2", "Roxanna es tipo 1 y Celeste tipo 2", "Roxanna es tipo 2 y Celeste tipo 1"], 
+        "correct": ["d"],
+        "points": 100
+    },
+    {
+        "id": "6d",
+        "description": "Hay cinco objetos con diferente número de identificación. Ordenarlos según las instrucciones dadas.\nSi dos objetos están uno junto al otro sus números de identificación no pueden tener dígitos en común.\nTodos los objetos, excepto #555 tienen un objeto a su lado con un número de identificación mayor.", 
+        "responses": ["#555", "#24", "#2", "#363", "#64"], 
+        "correct": ["b", "d", "a", "e", "c"],
+        "points": 100
+    },
+    {
+        "id": "7d",
+        "description": "Cinco hermanas han dado sus preferencias sobre cómo podrían sentarse en una fila de asientos\nWANDA quiere estar en el primer o segundo asiento\nWENDA no quiere estar enseguida de WINDA ni de WANDA\nWONDA quiere estar en seguida tanto de WUNDA como de WANDA", 
+        "responses": ["WANDA", "WENDA", "WINDA", "WONDA", "WUNDA"], 
+        "correct": ["c", "a", "d", "e", "b"],
+        "points": 100
+    },
+    {
+        "id": "8d",
+        "description": "", 
+        "responses": ["", "", "", ""], 
+        "correct": [""],
+        "points": 100
+    }
+]
