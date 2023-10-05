@@ -1,11 +1,12 @@
 import mysql.connector as connector
 import datetime
+import creds
 
 con = connector.connect(
-    host="localhost",
-    password="admin",
-    user="root",
-    database="logic_game"
+    host=creds.HOST_DATABASE,
+    password=creds.PASSWORD_DATABASE,
+    user=creds.USER_DATABASE,
+    database=creds.DATABASE
 )
 
 def createTable():
@@ -24,14 +25,15 @@ def createTable():
     con.commit()
     cur.close()
 
-def insertUser(name, points, time):
-    cur = con.cursor()
-    sql = "INSERT INTO players(Nombre, Puntos, Tiempo, Fecha) VALUES (%s, %s, %s, %s)"
-    data = (name, points, time, datetime.datetime.now())
-    cur.execute(sql, data)
+def insertUsersTest():
+    for i in range(20):
+        cur = con.cursor()
+        sql = "INSERT INTO players(Nombre, Puntos, Tiempo, Fecha) VALUES (%s, %s, %s, %s)"
+        data = ("a", "100", "250", datetime.datetime.now())
+        cur.execute(sql, data)
 
-    con.commit()
-    cur.close()
+        con.commit()
+        cur.close()
 
 def insertUser(name, points, time):
 

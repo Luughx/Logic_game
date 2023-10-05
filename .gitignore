@@ -1,3 +1,5 @@
 __pycache__
 creds.py
 test.py
+
+.gitignore
