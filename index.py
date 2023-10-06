@@ -448,7 +448,8 @@ def main(page: Page):
                     )
             )
 
-        listRanking[0].color = colors.SECONDARY_CONTAINER
+        if len(listRanking) != 0:
+            listRanking[0].color = colors.SECONDARY_CONTAINER
 
         return listRanking
         

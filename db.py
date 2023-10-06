@@ -25,10 +25,11 @@ def createTable():
     con.commit()
     cur.close()
 
+
 def insertUsersTest():
     for i in range(20):
         cur = con.cursor()
-        sql = "INSERT INTO players(Nombre, Puntos, Tiempo, Fecha) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO Players(Nombre, Puntos, Tiempo, Fecha) VALUES (%s, %s, %s, %s)"
         data = ("a", "100", "250", datetime.datetime.now())
         cur.execute(sql, data)
 
@@ -45,7 +46,7 @@ def insertUser(name, points, time):
         name = "Lughx"
 
     cur = con.cursor()
-    sql = "INSERT INTO players(Nombre, Puntos, Tiempo, Fecha) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO Players(Nombre, Puntos, Tiempo, Fecha) VALUES (%s, %s, %s, %s)"
     data = (name, points, time, datetime.datetime.now())
     cur.execute(sql, data)
     print("guarda")
@@ -54,7 +55,7 @@ def insertUser(name, points, time):
 
 def getUsers():
     cur = con.cursor()
-    sql = "SELECT * FROM players ORDER BY puntos DESC LIMIT 0, 50 "
+    sql = "SELECT * FROM Players ORDER BY puntos DESC LIMIT 0, 50 "
     cur.execute(sql)
     users = []
     for row in cur:
