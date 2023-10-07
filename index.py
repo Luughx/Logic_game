@@ -11,10 +11,11 @@ medium_questions = []
 easy_questions = []
 hard_questions = []
 resolves = [[],[],[]]
-answers = []
+answers = {}
+answersText = []
 name = ""
 difficult = 0
-current = {'id': 4, 'description': 'Esta es una pregunta facil 4', 'responses': ['a', 'b', 'c', 'd', 'e'], 'correct': ['a']}
+current = {'id': 4, 'description': 'E', 'responses': ['a', 'b', 'c', 'd', 'e'], 'correct': ['a'], "points": 0}
 fieldsQuestion = []
 maxLives = 3
 lives = maxLives
@@ -36,14 +37,17 @@ def loadQuestions():
         hard_questions = json.load(file)
 
 def main(page: Page):
-    page.title = 'Logic Game'
+    page.title = "Syllogistic"
     page.scroll = ft.ScrollMode.ALWAYS
 
     global lives
+    global current
+
     textQuestion = Text("",size=20)
-    textTime = Text("7:30", size=20)
+    textTime = Text("5:00", size=20)
     iconTime = ft.Icon(ft.icons.ACCESS_TIME)
     textPoints = Text(f"{points} puntos", size=20)
+    textPointsQuestion = Text(f"{current['points']} puntos", size=15, color=colors.GREY_400, weight=ft.FontWeight.W_100)
     textlives = Text(f"{lives} vidas", size=20)
     txtName = ft.TextField(label="Nombre", text_align=ft.TextAlign.CENTER, width=300, max_length=20, border_color=colors.SECONDARY, autofocus=True)
     dialogName = ft.AlertDialog(title=Text("Nombre"), content=Text("El campo de nombre no puede estar vacio"))
@@ -76,7 +80,7 @@ def main(page: Page):
                     ft.SafeArea(
                         ft.Column(
                             [
-                                ft.Text("Game name", size=30, weight=ft.FontWeight.W_600),
+                                ft.Text("Syllogistic".upper(), size=35, weight=ft.FontWeight.W_600),
                                 txtName,
                                 Column(
                                     [
@@ -132,12 +136,15 @@ def main(page: Page):
                                 ft.Column(
                                 [
                                     Container(
-                                        Column([
+                                        Column([    
+                                            textPointsQuestion,
                                             textQuestion,
+                                            Text("", size=0.5),
                                             Column(getAnswers())
                                         ]),
                                         padding=ft.padding.only(left=40, right=40)
                                     ),
+                                    Container(height=15),
                                     ft.Row(
                                         getFields(),
                                         alignment=ft.MainAxisAlignment.CENTER,
@@ -154,7 +161,7 @@ def main(page: Page):
                                         alignment=ft.MainAxisAlignment.END
                                     ),
                                 ],
-                                spacing=50, 
+                                spacing=25, 
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                 alignment=ft.MainAxisAlignment.CENTER
                             ),
@@ -206,12 +213,14 @@ def main(page: Page):
                 View(
                     '/How-to-play',
                     [
-                        AppBar(bgcolor=colors.PRIMARY_CONTAINER, title=Text("Como jugar")),
+                        AppBar(bgcolor=colors.PRIMARY_CONTAINER), #title=Text("Como jugar")
                         ft.SafeArea(
                             Container(
                                 ft.ListView(
                                     [
-                                        Text("Como jugar uwu")
+                                        Text("¿Cómo jugar?", weight=ft.FontWeight.W_700, size=30, text_align=ft.TextAlign.CENTER),
+                                        Container(height=15),
+                                        Text("Se te mostrarán preguntas las cuales cada una tiene una cantidad de puntos a recibir", size=25, text_align=ft.TextAlign.CENTER),
                                     ]
                                 ),
                                 padding=30,
@@ -265,11 +274,13 @@ def main(page: Page):
         global current
         global lives
         global points
+        global answers
+        
         correct = True
-        for i in range(len(current["correct"])):
-            if current["correct"][i] != fieldsQuestion[i].value.lower():
+        for i in range(len(current["correct"])):    
+            if current["correct"][i] != answers[fieldsQuestion[i].value.lower()]:
                 correct = False
-
+    
         if correct:
             points += current['points']
             textPoints.value = f"{points} puntos"
@@ -327,18 +338,25 @@ def main(page: Page):
                 while current["id"] in resolves[2]:
                     current = random.choice(hard_questions)
 
-        textQuestion.value = current["description"]
+        textPointsQuestion.value = f"{current['points']} puntos"
+        textQuestion.value = f"{current['description']}"
 
     def getAnswers():
         global current
         global answers
+        global answersText
 
+        answersLocal = current["responses"]
         answers.clear()
+        answersText.clear()
+
+        random.shuffle(answersLocal)
 
         for i, answer in enumerate(current["responses"]):
-            answers.append(Text(f"{list(ascii_lowercase)[i]}) {answer}", size=18))
+            answers[list(ascii_lowercase)[i]] = answer
+            answersText.append(Text(f"{list(ascii_lowercase)[i]}) {answersLocal[i]}", size=18))
 
-        return answers
+        return answersText
 
     def initializeTime():
         global timeBreaker

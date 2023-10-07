@@ -3,88 +3,67 @@
         "id": "1m",
         "description": "¿Cuál es la próxima letra en esta secuencia?\nA, C, E, G, ____", 
         "responses": ["H", "I", "J", "K"], 
-        "correct": ["b"],
+        "correct": ["I"],
         "points": 200
     },
     {
         "id": "2m",
         "description": "Completa la serie numérica:\n3, 6, 12, 24, ____", 
         "responses": ["36", "48", "60", "72"], 
-        "correct": ["b"],
+        "correct": ["48"],
         "points": 200
     },
     {
         "id": "3m",
-        "description": "Esta es una pregunta mediana 3", 
-        "responses": ["a", "b", "c", "d", "e"], 
-        "correct": ["a"],
+        "description": "Si \"azul\" representa \"verde\" y \"verde\" representa \"rojo\", ¿qué color representa \"azul\"?", 
+        "responses": ["Rojo", "Verde", "Azul", "Amarillo"], 
+        "correct": ["Rojo"],
         "points": 200
     },
     {
         "id": "4m",
-        "description": "Esta es una pregunta mediana 4", 
-        "responses": ["a", "b", "c", "d", "e"], 
-        "correct": ["a"],
+        "description": "Ordena correctamente según las instrucciones:\nPEGGY no es el unicornio más rápido\nPOGGY es el unicornio menos rápido\nPUGGY no es el menos rápido", 
+        "responses": ["PEGGY", "POGGY", "PUGGY"], 
+        "correct": ["PUGGY","PEGGY","POGGY"],
         "points": 200
     },
     {
         "id": "5m",
-        "description": "Esta es una pregunta mediana 5", 
-        "responses": ["a", "b", "c", "d", "e"], 
-        "correct": ["a"],
+        "description": "En cierta isla, hay dos tipos de habitantes, los de tipo uno, que siempre dicen la verdad, y los de tipo dos que siempre mienten. Conoces a tres habitantes: Thaddeus, Octavio y Ambrose.\nThaddeus dice que exactamente dos de ellos son tipo 1\nOctavio dice que Ambrose y él son tipo 1 \nAmbrose dice que Thaddeus es tipo 2\n¿Qué tipo de habitante es Thaddeus?", 
+        "responses": ["Tipo 1", "Tipo 2", "No hay información suficiente para determinar su tipo"], 
+        "correct": ["No hay información suficiente para determinar su tipo"],
         "points": 200
     },
     {
         "id": "6m",
-        "description": "Si \"azul\" representa \"verde\" y \"verde\" representa \"rojo\", ¿qué color representa \"azul\"?", 
-        "responses": ["Rojo", "Verde", "Azul", "Amarillo"], 
-        "correct": ["a"],
+        "description": "Hay cuatro cartas seguidas -un trébol, una reina, un rey y un as- y estos son algunos datos sobre dónde está cada carta:\nEl trébol no está en la tercera posición \nEl rey no está junto al as \nLa reina no está junto al as ni junto al trébol", 
+        "responses": ["trébol", "as", "rey", "reina"], 
+        "correct": ["as", "trébol", "rey", "reina"],
         "points": 200
     },
     {
         "id": "7m",
-        "description": "Ordena correctamente según las instrucciones:\nPEGGY no es el unicornio más rápido\nPOGGY es el unicornio menos rápido\nPUGGY no es el menos rápido", 
-        "responses": ["PEGGY", "POGGY", "PUGGY"], 
-        "correct": ["c","a","b"],
+        "description": "Si \"X\" representa el doble de \"Y\", y \"Y\" representa la mitad de \"Z\", ¿qué representa \"X\" en términos de \"Z\"?", 
+        "responses": ["X = 2Z", "X = Z/2", "X = Z", "X = Z/4"], 
+        "correct": ["X = Z"],
         "points": 200
     },
     {
         "id": "8m",
-        "description": "En cierta isla, hay dos tipos de habitantes, los de tipo uno, que siempre dicen la verdad, y los de tipo dos que siempre mienten. Conoces a tres habitantes: Thaddeus, Octavio y Ambrose.\nThaddeus dice que exactamente dos de ellos son tipo 1\nOctavio dice que Ambrose y él son tipo 1 \nAmbrose dice que Thaddeus es tipo 2\n¿Qué tipo de habitante es Thaddeus?", 
-        "responses": ["Tipo 1", "Tipo 2", "No hay información suficiente para determinar su tipo"], 
-        "correct": ["c"],
+        "description": "Si \"A\" es igual a 2, \"B\" es igual a 5 y \"C\" es igual a 7, ¿cuál es la relación lógica entre estos números?", 
+        "responses": ["A es igual a B más C", "A es igual a B menos C", "C es igual a A más B", "B es igual a C dividido por A"], 
+        "correct": ["C es igual a A más B"],
         "points": 200
     },
     {
         "id": "9m",
-        "description": "Hay cuatro cartas seguidas -un trébol, una reina, un rey y un as- y estos son algunos datos sobre dónde está cada carta:\nEl trébol no está en la tercera posición \nEl rey no está junto al as \nLa reina no está junto al as ni junto al trébol", 
-        "responses": ["trébol", "as", "rey", "reina"], 
-        "correct": ["b", "a", "c", "d"],
+        "description": "Completa la serie:\n2, 4, 8, 16, ____", 
+        "responses": ["24", "32", "64", "128"], 
+        "correct": ["32"],
         "points": 200
     },
     {
         "id": "10m",
-        "description": "Si \"X\" representa el doble de \"Y\", y \"Y\" representa la mitad de \"Z\", ¿qué representa \"X\" en términos de \"Z\"?", 
-        "responses": ["X = 2Z", "X = Z/2", "X = Z", "X = Z/4"], 
-        "correct": ["c"],
-        "points": 200
-    },
-    {
-        "id": "11m",
-        "description": "Si \"A\" es igual a 2, \"B\" es igual a 5 y \"C\" es igual a 7, ¿cuál es la relación lógica entre estos números?", 
-        "responses": ["A es igual a B más C", "A es igual a B menos C", "C es igual a A más B", "B es igual a C dividido por A"], 
-        "correct": ["c"],
-        "points": 200
-    },
-    {
-        "id": "12m",
-        "description": "Completa la serie:\n2, 4, 8, 16, ____", 
-        "responses": ["24", "32", "64", "128"], 
-        "correct": ["b"],
-        "points": 200
-    },
-    {
-        "id": "13m",
         "description": "", 
         "responses": ["", "", "", ""], 
         "correct": [""],

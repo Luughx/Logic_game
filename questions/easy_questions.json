@@ -3,88 +3,81 @@
         "id": "1f",
         "description": "Si todos los perros son mamíferos y Fido es un perro, ¿qué se puede concluir?", 
         "responses": ["Fido es un mamífero", "Fido no es un mamífero", "Fido es un gato", "No se puede concluir nada"], 
-        "correct": ["a"],
+        "correct": ["Fido es un mamífero"],
         "points": 100
     },
     {
         "id": "2f",
         "description": "Si algunos gatos son negros y Garfield es negro, ¿qué se puede concluir?", 
         "responses": ["Garfield es un gato", "Garfield no es un gato", "Todos los gatos son negros", "No se puede concluir nada"], 
-        "correct": ["d"],
+        "correct": ["No se puede concluir nada"],
         "points": 100
     },
     {
         "id": "3f",
         "description": "Si ningún pájaro puede volar y Tweety es un pájaro, ¿qué se puede concluir?", 
         "responses": ["Tweety puede volar", "Todos los pájaros son Tweety", "Tweety no puede volar", "No se puede concluir nada"], 
-        "correct": ["c"],
+        "correct": ["Tweety no puede volar"],
         "points": 100
     },
     {
         "id": "4f",
         "description": "Si todos los estudiantes son trabajadores y María es una estudiante, ¿qué se puede concluir?", 
-        "responses": ["María es una trabajadora", "María no es una trabajadora", "Todos los trabajadores son estudiantes", "No se puede concluir nada"], 
-        "correct": ["a"],
+        "responses": ["María es trabajadora", "María no es una trabajadora", "Todos los trabajadores son estudiantes", "No se puede concluir nada"], 
+        "correct": ["María es trabajadora"],
         "points": 100
     },
     {
         "id": "5f",
         "description": "Si algunos músicos son famosos y Juan es famoso, ¿qué se puede concluir?", 
         "responses": ["Juan es un músico", "Juan no es un músico", "Todos los músicos son famosos", "No se puede concluir nada"], 
-        "correct": ["d"],
+        "correct": ["No se puede concluir nada"],
         "points": 100
     },
     {
         "id": "6f",
         "description": "Si ningún libro es una película y \"El Gran Gatsby\" es una película, ¿qué se puede concluir?", 
         "responses": ["\"El Gran Gatsby\" es un libro.", "\"El Gran Gatsby\" no es un libro", "Todas las películas son libros", "No se puede concluir nada"], 
-        "correct": ["b"],
+        "correct": ["\"El Gran Gatsby\" no es un libro"],
         "points": 100
     },
     {
         "id": "7f",
         "description": "Si todos los automóviles son vehículos y algunos vehículos son eléctricos, ¿qué se puede concluir?", 
         "responses": ["Algunos vehículos no son eléctricos", "Todos los automóviles son eléctricos", "Algunos automóviles son eléctricos", "No se puede concluir nada"], 
-        "correct": ["c"],
+        "correct": ["Algunos automóviles son eléctricos"],
         "points": 100
     },
     {
         "id": "8f",
         "description": "¿Cuál es el siguiente número en esta serie: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 … ?", 
         "responses": ["67", "46", "89", "115"], 
-        "correct": ["c"],
+        "correct": ["89"],
         "points": 100
     },
     {
         "id": "9f",
         "description": "Si todos los pájaros vuelan y algunos pájaros son avestruces, ¿qué se puede concluir?", 
         "responses": ["Algunos avestruces vuelan", "Todos los avestruces son pájaros", "Todos los pájaros son avestruces", "No se puede concluir nada"], 
-        "correct": ["a"],
+        "correct": ["Algunos avestruces vuelan"],
         "points": 100
     },
     {
         "id": "10f",
         "description": "Si todas las abejas son insectos y algunas abejas son productivas, ¿qué se puede concluir?", 
         "responses": ["Todas las abejas son productivas", "Algunas abejas no son insectos", "Algunos insectos no son productivos", "Algunos insectos son productivos"], 
-        "correct": ["d"],
+        "correct": ["Algunos insectos son productivos"],
         "points": 100
     },
     {
         "id": "11f",
         "description": "Si algunos científicos son genios y ningún genio es aburrido, ¿qué se puede concluir?", 
         "responses": ["Algunos científicos no son aburridos", "Todos los científicos son aburridos", "Todos los genios son científicos", "No se puede concluir nada"], 
-        "correct": ["a"],
+        "correct": ["Algunos científicos no son aburridos"],
         "points": 100
     },
     {
         "id": "12f",
-        "description": "Si algunos científicos son genios y ningún genio es aburrido, ¿qué se puede concluir?", 
-        "responses": ["Algunos científicos no son aburridos", "Todos los científicos son aburridos", "Todos los genios son científicos", "No se puede concluir nada"], 
-        "correct": ["a"],
-        "points": 100
-    },
-    {
-        "id": "13f",
         "description": "", 
         "responses": ["", "", "", ""], 
         "correct": [""],
