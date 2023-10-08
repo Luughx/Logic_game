@@ -2,12 +2,17 @@ import mysql.connector as connector
 import datetime
 import creds
 
-con = connector.connect(
-    host=creds.HOST_DATABASE,
-    password=creds.PASSWORD_DATABASE,
-    user=creds.USER_DATABASE,
-    database=creds.DATABASE
-)
+con = ""
+
+try:
+    con = connector.connect(
+        host=creds.HOST_DATABASE,
+        password=creds.PASSWORD_DATABASE,
+        user=creds.USER_DATABASE,
+        database=creds.DATABASE
+    )
+except:
+    print("Error en la base de datos, probablemente falta de internet")
 
 def createTable():
     cur = con.cursor()

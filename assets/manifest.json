@@ -1,0 +1,33 @@
+{
+    "name": "Syllogistic",
+    "short_name": "Syllogistic",
+    "start_url": ".",
+    "display": "standalone",
+    "description": "Syllogistic es el juego perfecto para ejercitar tu cerebro, mejorar tus habilidades de resolución de problemas y competir en una clasificación global",
+    "orientation": "natural",
+    "prefer_related_applications": false,
+    "icons": [
+      {
+        "src": "icons/loading-animation.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/loading-animation.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/loading-animation.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "icons/loading-animation.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ]
+  }

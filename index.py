@@ -15,7 +15,7 @@ answers = {}
 answersText = []
 name = ""
 difficult = 0
-current = {'id': 4, 'description': 'E', 'responses': ['a', 'b', 'c', 'd', 'e'], 'correct': ['a'], "points": 0}
+current = {'id': 4, 'description': 'E', 'responses': ['a', 'b', 'c', 'd'], 'correct': ['a'], "points": 0}
 fieldsQuestion = []
 maxLives = 3
 lives = maxLives
@@ -23,6 +23,7 @@ points = 0
 timeBreaker = False
 maxTime = 300
 time = 0
+fieldsChange = {}
 
 #Carga todas las preguntas de los archivos .json
 def loadQuestions():
@@ -43,13 +44,14 @@ def main(page: Page):
     global lives
     global current
 
+    # Variables que contendrán los elementos que cambian de valor dentro del programa
     textQuestion = Text("",size=20)
     textTime = Text("5:00", size=20)
     iconTime = ft.Icon(ft.icons.ACCESS_TIME)
     textPoints = Text(f"{points} puntos", size=20)
     textPointsQuestion = Text(f"{current['points']} puntos", size=15, color=colors.GREY_400, weight=ft.FontWeight.W_100)
     textlives = Text(f"{lives} vidas", size=20)
-    txtName = ft.TextField(label="Nombre", text_align=ft.TextAlign.CENTER, width=300, max_length=20, border_color=colors.SECONDARY, autofocus=True)
+    txtName = ft.TextField(label="Nombre", text_align=ft.TextAlign.CENTER, width=300, max_length=20, border_color=colors.SECONDARY)
     dialogName = ft.AlertDialog(title=Text("Nombre"), content=Text("El campo de nombre no puede estar vacio"))
     dialogWrong = ft.AlertDialog(title=Text("Perdiste"), modal=True)
 
@@ -80,7 +82,15 @@ def main(page: Page):
                     ft.SafeArea(
                         ft.Column(
                             [
-                                ft.Text("Syllogistic".upper(), size=35, weight=ft.FontWeight.W_600),
+                                Container(height=20),
+                                Column(
+                                    [
+                                        ft.Image(src=f"/icons/loading-animation.png", width=100, height=100, error_content=Text("</>", size=40)),
+                                        ft.Text("Syllogistic".upper(), size=35, weight=ft.FontWeight.W_600),
+                                    ],
+                                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                    spacing=0
+                                ),
                                 txtName,
                                 Column(
                                     [
@@ -92,8 +102,11 @@ def main(page: Page):
                                 ),
                             ],
                             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                            spacing=50
-                        )
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            spacing=50,
+                            scroll=ft.ScrollMode.ALWAYS
+                        ),
+                        expand=True
                     )
                 ],
                 vertical_alignment=ft.MainAxisAlignment.CENTER,
@@ -113,11 +126,11 @@ def main(page: Page):
                                         #ft.Icon(ft.icons.FAVORITE, size=17),
                                         textlives
                                     ]),
-                                    padding=ft.padding.only(left=30,right=30),
+                                    padding=ft.padding.only(right=20),
                                 ),
                                 Container(
                                     textPoints,
-                                    padding=ft.padding.only(left=30,right=30),
+                                    padding=ft.padding.only(right=20),
                                 ),
                                 Container(
                                     Row([
@@ -126,7 +139,7 @@ def main(page: Page):
                                     ],
                                     alignment=ft.MainAxisAlignment.CENTER
                                     ),
-                                    padding=ft.padding.only(left=30,right=30),
+                                    padding=ft.padding.only(right=20),
                                 ),
                             ],
                             bgcolor=colors.PRIMARY_CONTAINER
@@ -142,7 +155,7 @@ def main(page: Page):
                                             Text("", size=0.5),
                                             Column(getAnswers())
                                         ]),
-                                        padding=ft.padding.only(left=40, right=40)
+                                        #padding=ft.padding.only(left=20, right=20)
                                     ),
                                     Container(height=15),
                                     ft.Row(
@@ -150,22 +163,30 @@ def main(page: Page):
                                         alignment=ft.MainAxisAlignment.CENTER,
                                         wrap=True
                                     ),
+                                    Container(height=25),
                                     ft.Row(
                                         [
+                                            ElevatedButton(
+                                                "Saltar",
+                                                on_click=skipQuestion,
+                                                icon=ft.icons.NAVIGATE_NEXT,
+                                                #style=ft.ButtonStyle(bgcolor=colors.RED_300, color=colors.WHITE)
+                                            ),
                                             ElevatedButton(
                                                 "Siguiente",
                                                 on_click=nextQuestion,
                                                 icon=ft.icons.NAVIGATE_NEXT
                                             ),
                                         ],
-                                        alignment=ft.MainAxisAlignment.END
+                                        alignment=ft.MainAxisAlignment.SPACE_EVENLY
                                     ),
                                 ],
-                                spacing=25, 
+                                spacing=40, 
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                                alignment=ft.MainAxisAlignment.CENTER
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                scroll=ft.ScrollMode.ALWAYS
                             ),
-                            padding=60
+                            padding=30,
                             ),
                             expand=True
                         )
@@ -199,7 +220,8 @@ def main(page: Page):
                                     ]
                                     
                                 ),
-                                padding=30,
+                                expand=True
+                                #padding=30,
                             ),
                             expand=True
                         ),
@@ -275,12 +297,16 @@ def main(page: Page):
         global lives
         global points
         global answers
+        global time
         
         correct = True
-        for i in range(len(current["correct"])):    
-            if current["correct"][i] != answers[fieldsQuestion[i].value.lower()]:
+        for i in range(len(current["correct"])):
+            if fieldsQuestion[i].value != "":
+                if current["correct"][i] != answers[fieldsQuestion[i].value.lower()]:
+                    correct = False
+            else:
                 correct = False
-    
+
         if correct:
             points += current['points']
             textPoints.value = f"{points} puntos"
@@ -290,19 +316,23 @@ def main(page: Page):
 
             if difficult == 0:
                 resolves[0].append(current["id"])
-            if difficult == 1:
+            elif difficult == 1:
                 resolves[1].append(current["id"])
-            if difficult == 2:
-                resolves[2].append(current["id"])  
+            elif difficult == 2:
+                resolves[2].append(current["id"])
+
+            if difficult == 0 and len(resolves[0]) >= 7 and time <= maxTime-90:
+                difficult = 1
+            elif difficult == 1 and len(resolves[1]) >= 15 and time <= maxTime-210:
+                difficult = 2
+
             getQuestion()
             getAnswers()
             getFields()
         else:
-            lives -= 1
             print("te salio mal :c")
-
+            removeLives()
             if lives > 0:
-                textlives.value = f"{lives} vidas"
                 page.snack_bar = ft.SnackBar(ft.Text(f"Tu respuesta fue incorrecta, te quedan {lives} vidas", color=colors.ON_ERROR_CONTAINER), bgcolor=colors.ERROR_CONTAINER, )
                 page.snack_bar.open = True
                 fieldsQuestion[0].autofocus = True
@@ -332,7 +362,7 @@ def main(page: Page):
 
         if difficult == 2:
             if len(hard_questions) <= len(resolves[2]):
-                page.go('/ranking')
+                defeat(True)
             else: 
                 current = random.choice(hard_questions)
                 while current["id"] in resolves[2]:
@@ -357,6 +387,27 @@ def main(page: Page):
             answersText.append(Text(f"{list(ascii_lowercase)[i]}) {answersLocal[i]}", size=18))
 
         return answersText
+
+    def skipQuestion(event):
+        global points
+        global lives
+
+        removeLives()
+
+        points -= 150
+        textPoints.value = f"{points} puntos"
+
+        if lives > 0:
+            page.snack_bar = ft.SnackBar(ft.Text(f"Saltaste la pregunta, pero te quedan {lives} vidas", color=colors.ON_SECONDARY_CONTAINER), bgcolor=colors.SECONDARY_CONTAINER, )
+            page.snack_bar.open = True
+
+            getQuestion()
+            getAnswers()
+            getFields()
+        else:
+            defeat()
+
+        print("skip")
 
     def initializeTime():
         global timeBreaker
@@ -387,9 +438,16 @@ def main(page: Page):
                 defeat()
                 page.update()
 
+    # others 
+
+    def removeLives(livesRemove = 1):
+        global lives
+        lives -= livesRemove
+        textlives.value = f"{lives} vidas"
+
     #--------------
 
-    def defeat():
+    def defeat(complete = False):
         try:
             requests.get("https://www.google.com", timeout=5)
         except (requests.ConnectionError, requests.Timeout):
@@ -402,18 +460,25 @@ def main(page: Page):
             dialogWrong.open = True
         else:
             print("Con conexión a internet.")
-            if points == 0:
+            if points <= 0:
                 dialogWrong.content = Text(f"Perdiste, conseguiste {points} puntos, tu resultado no será guardado")
                 dialogWrong.actions = [ft.ElevatedButton("Aceptar", on_click=closeDefeat, autofocus=True)]
 
                 page.dialog = dialogWrong
                 dialogWrong.open = True
             else:
-                dialogWrong.content = Text(f"Perdiste, conseguiste {points} puntos, ¿Deseas guardar tu resultado?")
-                dialogWrong.actions = [ft.ElevatedButton("Sí", on_click=saveDataSQL, autofocus=True), ft.ElevatedButton("No", on_click=closeDefeat)]
+                if not complete:
+                    dialogWrong.content = Text(f"Perdiste, conseguiste {points} puntos, ¿Deseas guardar tu resultado?")
+                    dialogWrong.actions = [ft.ElevatedButton("Sí", on_click=saveDataSQL, autofocus=True), ft.ElevatedButton("No", on_click=closeDefeat)]
 
-                page.dialog = dialogWrong
-                dialogWrong.open = True
+                    page.dialog = dialogWrong
+                    dialogWrong.open = True
+                else:
+                    dialogWrong.content = Text(f"Ganaste!!, completaste todas las preguntas y conseguiste {points} puntos, ¿Deseas guardar tu resultado?")
+                    dialogWrong.actions = [ft.ElevatedButton("Sí", on_click=saveDataSQL, autofocus=True), ft.ElevatedButton("No", on_click=closeDefeat)]
+
+                    page.dialog = dialogWrong
+                    dialogWrong.open = True
 
     def openRanking(event):
         try:
@@ -448,6 +513,7 @@ def main(page: Page):
         page.go("/ranking")
 
     # Returns
+
     def getRanking():
         listRanking = []
         users = getUsers()
@@ -470,7 +536,7 @@ def main(page: Page):
             listRanking[0].color = colors.SECONDARY_CONTAINER
 
         return listRanking
-        
+         
     def getFields():
         global fieldsQuestion
         global current
@@ -478,19 +544,62 @@ def main(page: Page):
 
         for i in range(len(current["correct"])):
             if len(current["correct"]) == 1:
-                txtField = ft.TextField(text_align=ft.TextAlign.CENTER, width=120, value="", label="Respuesta", border_color=colors.SECONDARY)
+                txtField = ft.TextField(text_align=ft.TextAlign.CENTER, width=120, value="", label="Respuesta", border_color=colors.SECONDARY, on_change=changeAnswer, max_length=1)
                 txtField.on_submit = nextQuestion
                 txtField.autofocus = True
                 fieldsQuestion.append(txtField)
             else:
+                txtField =ft.TextField(text_align=ft.TextAlign.CENTER, width=120, value="", label=f"Posición {i+1}", border_color=colors.SECONDARY, on_change=changeAnswer, max_length=1)
                 if i == 0:
                     txtField.autofocus = True
-                txtField =ft.TextField(text_align=ft.TextAlign.CENTER, width=120, value="", label=f"Posición {i}", border_color=colors.SECONDARY)
                 txtField.on_submit = nextQuestion
+                #txtField.on_change = changeAnswer
                 fieldsQuestion.append(txtField)
 
         return fieldsQuestion
+    
+    # events
+    def changeAnswer(event):
+        global answersText
+        global answers
+        global fieldsChange
 
+        try:
+            value = event.control.value
+
+            if value.lower() in answers:
+                index = list(ascii_lowercase).index(value.lower())
+                if not event.control.label in fieldsChange:
+                    fieldsChange[event.control.label] = index
+                exists = existsField(event, fieldsChange)
+                if fieldsChange[event.control.label] != index and not exists:
+                    answersText[fieldsChange[event.control.label]].weight = ft.FontWeight.W_400
+
+                fieldsChange[event.control.label] = index
+                answersText[index].weight = ft.FontWeight.W_700
+                #answersText[index].color = colors.ON_PRIMARY_CONTAINER
+            else:
+                exists = existsField(event, fieldsChange)
+                if not exists:
+                    #answersText[fieldsChange[event.control.label]].color = None
+                    answersText[fieldsChange[event.control.label]].weight = ft.FontWeight.W_400
+                    del fieldsChange[event.control.label]
+
+            page.update()
+        except Exception as err:
+            print(err)
+        
+    def existsField(event, fieldsChange):
+        try:
+            exists = False
+            for field in fieldsChange:
+                if field != event.control.label and fieldsChange[field] == fieldsChange[event.control.label]:
+                        exists = True
+            #print(fieldsChange[event.control.label])
+            return exists
+        except Exception as err:
+            print(err)
+    
     page.go(page.route)
 
-ft.app(target=main, view=ft.WEB_BROWSER)
+ft.app(target=main, assets_dir="assets", view=ft.WEB_BROWSER)
