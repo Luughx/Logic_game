@@ -298,6 +298,7 @@ def main(page: Page):
         global points
         global answers
         global time
+        global difficult
         
         correct = True
         for i in range(len(current["correct"])):
